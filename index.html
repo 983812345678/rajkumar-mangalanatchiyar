@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wedding Invitation</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#fff7ef;
+overflow-x:hidden;
+color:#5c2d00;
+scroll-behavior:smooth;
+}
+
+/* OPEN SCREEN */
+
+.open-screen{
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#fff3dc,#ffe2b5);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+transition:1s;
+}
+
+.open-content{
+text-align:center;
+padding:20px;
+animation:fadeUp 1.5s ease;
+}
+
+.om{
+font-size:60px;
+color:#d18b00;
+margin-bottom:10px;
+}
+
+.small{
+letter-spacing:6px;
+color:#7a4b00;
+margin-bottom:15px;
+}
+
+.big1{
+font-size:4rem;
+font-family:'Great Vibes',cursive;
+color:#5a2100;
+}
+
+.big2{
+font-size:5rem;
+font-family:'Great Vibes',cursive;
+background:linear-gradient(45deg,#ff9800,#ffcc66,#ff6f00);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.open-btn{
+margin-top:30px;
+padding:18px 45px;
+border:none;
+border-radius:50px;
+background:linear-gradient(45deg,#ff9800,#ffb300);
+color:white;
+font-size:1rem;
+cursor:pointer;
+transition:0.4s;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+.open-btn:hover{
+transform:scale(1.08);
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+position:relative;
+background:
+linear-gradient(rgba(255,247,239,0.92),rgba(255,247,239,0.95)),
+url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1400&auto=format&fit=crop')
+center/cover;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+inset:20px;
+border:4px solid #f0b34f;
+border-radius:20px;
+}
+
+.poster{
+width:350px;
+max-width:95%;
+border-radius:25px;
+margin-bottom:30px;
+z-index:2;
+box-shadow:0 15px 35px rgba(0,0,0,0.25);
+animation:float 4s ease-in-out infinite;
+}
+
+.title{
+font-size:2.8rem;
+color:#8b3f00;
+z-index:2;
+}
+
+.couple{
+font-family:'Great Vibes',cursive;
+font-size:5rem;
+color:#d66a00;
+margin:20px 0;
+z-index:2;
+animation:glow 3s infinite;
+}
+
+.date{
+font-size:1.3rem;
+letter-spacing:2px;
+margin-bottom:20px;
+z-index:2;
+}
+
+.text{
+max-width:750px;
+line-height:1.9;
+z-index:2;
+}
+
+/* SECTION */
+
+section{
+padding:80px 20px;
+}
+
+.section-title{
+text-align:center;
+font-size:3rem;
+font-family:'Great Vibes',cursive;
+color:#8b3f00;
+margin-bottom:50px;
+}
+
+.card{
+max-width:1100px;
+margin:auto;
+background:white;
+padding:40px;
+border-radius:25px;
+border:2px solid #ffd08a;
+box-shadow:0 15px 35px rgba(0,0,0,0.08);
+}
+
+/* DETAILS */
+
+.details{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.box{
+background:#fff8ef;
+padding:30px;
+border-radius:20px;
+border:2px solid #ffd18c;
+text-align:center;
+transition:0.4s;
+}
+
+.box:hover{
+transform:translateY(-10px);
+}
+
+.box h3{
+margin-bottom:15px;
+color:#c26500;
+}
+
+/* COUNTDOWN */
+
+.countdown{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.time{
+width:120px;
+height:120px;
+background:white;
+border-radius:20px;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+border:2px solid #ffc46d;
+box-shadow:0 10px 20px rgba(0,0,0,0.08);
+}
+
+.time h2{
+font-size:2.5rem;
+color:#ff7b00;
+}
+
+/* SCRATCH */
+
+.scratch-container{
+position:relative;
+width:320px;
+height:320px;
+margin:auto;
+border-radius:20px;
+overflow:hidden;
+border:4px solid #d9b382;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.qr-image{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+#scratchCanvas{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+cursor:pointer;
+}
+
+/* RSVP */
+
+.rsvp{
+text-align:center;
+}
+
+.rsvp a{
+display:inline-block;
+margin-top:25px;
+padding:16px 40px;
+background:linear-gradient(45deg,#ff9800,#ffb300);
+color:white;
+text-decoration:none;
+border-radius:50px;
+transition:0.4s;
+}
+
+.rsvp a:hover{
+transform:scale(1.08);
+}
+
+/* MUSIC */
+
+.music-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+width:60px;
+height:60px;
+border:none;
+border-radius:50%;
+background:#ff9800;
+color:white;
+font-size:24px;
+cursor:pointer;
+z-index:999;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* HEARTS */
+
+.hearts span{
+position:fixed;
+bottom:-100px;
+font-size:22px;
+color:#ff8a80;
+animation:heartMove linear infinite;
+pointer-events:none;
+}
+
+.hearts span:nth-child(1){left:10%;animation-duration:8s;}
+.hearts span:nth-child(2){left:20%;animation-duration:10s;}
+.hearts span:nth-child(3){left:35%;animation-duration:12s;}
+.hearts span:nth-child(4){left:50%;animation-duration:9s;}
+.hearts span:nth-child(5){left:70%;animation-duration:11s;}
+.hearts span:nth-child(6){left:85%;animation-duration:13s;}
+
+/* FOOTER */
+
+footer{
+background:#8b3f00;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes glow{
+0%{
+text-shadow:0 0 5px #ffb74d;
+}
+50%{
+text-shadow:0 0 25px #ff9800;
+}
+100%{
+text-shadow:0 0 5px #ffb74d;
+}
+}
+
+@keyframes float{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-12px);
+}
+}
+
+@keyframes heartMove{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(-1000px);
+opacity:0;
+}
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.big1{
+font-size:2.5rem;
+}
+
+.big2{
+font-size:3rem;
+}
+
+.couple{
+font-size:3.2rem;
+}
+
+.title{
+font-size:2rem;
+}
+
+.poster{
+width:95%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- OPEN SCREEN -->
+
+<div class="open-screen" id="openScreen">
+
+<div class="open-content">
+
+<div class="om">ॐ</div>
+
+<div class="small">SHUBH VIVAH</div>
+
+<div class="big1">
+You are invited to
+</div>
+
+<div class="big2">
+Wedding Celebration
+</div>
+
+<button class="open-btn" onclick="openInvitation()">
+Tap To Open Invitation
+</button>
+
+</div>
+</div>
+
+<!-- MUSIC -->
+
+<audio id="music" loop>
+<source src="mi.mp3.mpeg" type="audio/mp3">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">
+🎵
+</button>
+
+<!-- FLOATING HEARTS -->
+
+<div class="hearts">
+<span>❤</span>
+<span>❤</span>
+<span>❤</span>
+<span>❤</span>
+<span>❤</span>
+<span>❤</span>
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="321.jpeg" class="poster">
+
+<h1 class="title">
+Wedding Invitation
+</h1>
+
+<div class="couple">
+Rajkumar <br>&<br> Mangalatchiya
+</div>
+
+<div class="date">
+04 June 2026 | Thursday
+</div>
+
+<p class="text">
+With the divine blessings of Lord Ganesha and our beloved parents,
+we cordially invite you to grace our wedding ceremony and bless us
+as we begin our new journey together.
+</p>
+
+</section>
+
+<!-- DETAILS -->
+
+<section>
+
+<h2 class="section-title">
+Wedding Details
+</h2>
+
+<div class="card">
+
+<div class="details">
+
+<div class="box">
+<h3>💍 Muhurtham</h3>
+<p>04 June 2026</p>
+<p>6:00 AM – 9:00 AM</p>
+</div>
+
+<div class="box">
+<h3>📍 Venue</h3>
+<p>Sri Sivan Temple</p>
+<p>Nerkuppai,Tamil Nadu</p>
+</div>
+
+<div class="box">
+<h3>🙏 Blessings</h3>
+<p>Your presence is our happiness</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- COUNTDOWN -->
+
+<section>
+
+<h2 class="section-title">
+Countdown To Wedding
+</h2>
+
+<div class="countdown">
+
+<div class="time">
+<h2 id="days">0</h2>
+<p>Days</p>
+</div>
+
+<div class="time">
+<h2 id="hours">0</h2>
+<p>Hours</p>
+</div>
+
+<div class="time">
+<h2 id="minutes">0</h2>
+<p>Minutes</p>
+</div>
+
+<div class="time">
+<h2 id="seconds">0</h2>
+<p>Seconds</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- SCRATCH LOCATION -->
+
+<section>
+
+<h2 class="section-title">
+Scratch To Reveal Location
+</h2>
+
+<div class="card rsvp">
+
+<p style="margin-bottom:20px;">
+Scratch the golden card to reveal the wedding venue ✨
+</p>
+
+<div class="scratch-container">
+
+<img src="1111.png" class="qr-image">
+
+<canvas id="scratchCanvas"></canvas>
+
+</div>
+
+<a href="https://maps.app.goo.gl/kWXkSzzE1KbHzNyr5?g_st=aw" target="_blank">
+Open Location
+</a>
+
+</div>
+
+</section>
+
+<!-- RSVP -->
+
+<section>
+
+<h2 class="section-title">
+</h2>
+
+<div class="card rsvp">
+
+<p>
+We request the honor of your presence
+at our wedding celebration.
+</p>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+Made with ❤️ for Our Wedding Celebration
+</footer>
+
+<!-- SCRIPT -->
+
+<script>
+
+/* OPEN SCREEN */
+
+function openInvitation(){
+
+document.getElementById("openScreen").style.opacity = "0";
+
+setTimeout(()=>{
+document.getElementById("openScreen").style.display = "none";
+},1000);
+
+document.getElementById("music").play();
+
+}
+
+/* MUSIC */
+
+const music = document.getElementById("music");
+
+function toggleMusic(){
+
+if(music.paused){
+music.play();
+}else{
+music.pause();
+}
+
+}
+
+/* COUNTDOWN */
+
+const weddingDate = new Date("June 04, 2026 06:00:00").getTime();
+
+setInterval(()=>{
+
+const now = new Date().getTime();
+
+const distance = weddingDate - now;
+
+document.getElementById("days").innerHTML =
+Math.floor(distance / (1000*60*60*24));
+
+document.getElementById("hours").innerHTML =
+Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+
+document.getElementById("minutes").innerHTML =
+Math.floor((distance % (1000*60*60)) / (1000*60));
+
+document.getElementById("seconds").innerHTML =
+Math.floor((distance % (1000*60)) / 1000);
+
+},1000);
+
+/* SCRATCH */
+
+const canvas = document.getElementById("scratchCanvas");
+
+const ctx = canvas.getContext("2d");
+
+const container = document.querySelector(".scratch-container");
+
+canvas.width = container.offsetWidth;
+canvas.height = container.offsetHeight;
+
+ctx.fillStyle = "#d4a24c";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle = "#ffffff";
+ctx.font = "bold 30px Poppins";
+ctx.textAlign = "center";
+
+ctx.fillText(
+"Scratch Here ✨",
+canvas.width/2,
+canvas.height/2
+);
+
+let isDrawing = false;
+
+function scratch(x,y){
+
+ctx.globalCompositeOperation = "destination-out";
+
+ctx.beginPath();
+
+ctx.arc(x,y,25,0,Math.PI*2);
+
+ctx.fill();
+
+}
+
+canvas.addEventListener("mousedown",()=>{
+isDrawing = true;
+});
+
+canvas.addEventListener("mouseup",()=>{
+isDrawing = false;
+});
+
+canvas.addEventListener("mousemove",(e)=>{
+
+if(!isDrawing) return;
+
+const rect = canvas.getBoundingClientRect();
+
+scratch(
+e.clientX - rect.left,
+e.clientY - rect.top
+);
+
+});
+
+canvas.addEventListener("touchstart",()=>{
+isDrawing = true;
+});
+
+canvas.addEventListener("touchend",()=>{
+isDrawing = false;
+});
+
+canvas.addEventListener("touchmove",(e)=>{
+
+e.preventDefault();
+
+if(!isDrawing) return;
+
+const rect = canvas.getBoundingClientRect();
+
+const touch = e.touches[0];
+
+scratch(
+touch.clientX - rect.left,
+touch.clientY - rect.top
+);
+
+},{passive:false});
+
+</script>
+
+</body>
+</html>
